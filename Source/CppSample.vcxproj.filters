@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="cppRedis">
+      <UniqueIdentifier>{e41b02a1-7917-4e63-9873-ae438dab3c33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{cbb83551-2f2c-493e-878e-ee83b0eef07e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{bac9a693-cd10-4f8b-874b-926cd8fe7b9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\StopWatch">
+      <UniqueIdentifier>{1a42ab04-8040-4b39-a8ce-799523a481c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\RandomInt">
+      <UniqueIdentifier>{4b9d7506-facd-4a20-a0a8-61e87a0aa12b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CppSample.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="cppRedis.cpp">
+      <Filter>cppRedis</Filter>
+    </ClCompile>
+    <ClCompile Include="RedisTestSenario.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cppRedis.h">
+      <Filter>cppRedis</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="RedisTestSenario.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="xStopWatch.h">
+      <Filter>Utils\StopWatch</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomInt.h">
+      <Filter>Utils\RandomInt</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
