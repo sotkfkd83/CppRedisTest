@@ -82,104 +82,85 @@ void RedisTestSenario::Log(const string_view& message)
 
 void RedisTestSenario::SenarioStringSet(int testCount)
 {
-    thread sernario([this, testCount]
-    {
-        xStopWatch stopWatch;
-        stopWatch.Start();
-        for (int i = 0; i < testCount; ++i)
-        {
-            auto value = to_string(i);
-            if (m_rediClient->StringSet(value, value) == false)
-            {
-                Log(format("StringSet Fail. Key: {}", i));
-            }
-        }
+	xStopWatch stopWatch;
+	stopWatch.Start();
+	for (int i = 0; i < testCount; ++i)
+	{
+		auto value = to_string(i);
+		if (m_rediClient->StringSet(value, value) == false)
+		{
+			Log(format("StringSet Fail. Key: {}", i));
+		}
+	}
 
-        stopWatch.Stop();
-        Log(format("SenarioStringSet End. ThreadId: {} Count: {} Elapse = {}ms", std::hash<std::thread::id>()(std::this_thread::get_id()), testCount, stopWatch.ElapseMillisecond()));
-
-    });
-    sernario.join();
+	stopWatch.Stop();
+	Log(format("SenarioStringSet End. Count: {} Elapse = {}ms", testCount, stopWatch.ElapseMillisecond()));
 }
 	
 void RedisTestSenario::SenarioStringGet(int testCount)
 {
-    thread sernario([this, testCount]
-    {
-        xStopWatch stopWatch;
-        stopWatch.Start();
-        for (int i = 0; i < testCount; ++i)
-        {
-            auto getResult = m_rediClient->StringGet(to_string(i));
-            if (getResult.empty())
-            {
-                Log(format("StringGet Empty Error. Key: {}", i));
-            }
-        }
+	xStopWatch stopWatch;
+	stopWatch.Start();
+	for (int i = 0; i < testCount; ++i)
+	{
+		auto getResult = m_rediClient->StringGet(to_string(i));
+		if (getResult.empty())
+		{
+			Log(format("StringGet Empty Error. Key: {}", i));
+		}
+	}
 
-        stopWatch.Stop();
-        Log(format("SenarioStringGet End. ThreadId: {} Count: {} Elapse = {}ms", std::hash<std::thread::id>()(std::this_thread::get_id()), testCount, stopWatch.ElapseMillisecond()));
-    });
-
-    sernario.join();
+	stopWatch.Stop();
+	Log(format("SenarioStringGet End. Count: {} Elapse = {}ms", testCount, stopWatch.ElapseMillisecond()));
 }
 
 void RedisTestSenario::SenarioStringDel(int testCount)
 {
-    thread sernario([this, testCount]
-    {
-        xStopWatch stopWatch;
-        stopWatch.Start();
+	xStopWatch stopWatch;
+	stopWatch.Start();
 
-        for (int i = 0; i < testCount; ++i)
-        {
-            auto value = to_string(i);
-            if (m_rediClient->StringDel(value) == false)
-            {
-                Log(std::format("StringDelTest Del fail. Key: {}", i));
-            }
-        }
+	for (int i = 0; i < testCount; ++i)
+	{
+		auto value = to_string(i);
+		if (m_rediClient->StringDel(value) == false)
+		{
+			Log(std::format("StringDelTest Del fail. Key: {}", i));
+		}
+	}
 
-        stopWatch.Stop();
-        Log(format("SenarioStringDel End. ThreadId: {} Count: {} Elapse = {}ms", std::hash<std::thread::id>()(std::this_thread::get_id()), testCount, stopWatch.ElapseMillisecond()));
-    });
-    sernario.join();
+	stopWatch.Stop();
+	Log(format("SenarioStringDel End. Count: {} Elapse = {}ms", testCount, stopWatch.ElapseMillisecond()));
 }
 
 
 void RedisTestSenario::SenarioStringTTL(int testCount)
 {
-    thread sernario([this, testCount]
-    {
-        xStopWatch stopWatch;
-        stopWatch.Start();
+	xStopWatch stopWatch;
+	stopWatch.Start();
 
-        for (int i = 0; i < testCount; ++i)
-        {
-            auto value = to_string(i);
-            if (m_rediClient->StringSet(value, value, chrono::milliseconds(1)) == false)
-            {
-                Log(format("StringSetTTL Set Fail. Key: {}", i));
-            }
-        }
+	for (int i = 0; i < testCount; ++i)
+	{
+		auto value = to_string(i);
+		if (m_rediClient->StringSet(value, value, chrono::milliseconds(1)) == false)
+		{
+			Log(format("StringSetTTL Set Fail. Key: {}", i));
+		}
+	}
 
-        this_thread::sleep_for(chrono::microseconds(1));
+	this_thread::sleep_for(chrono::microseconds(1));
 
-        for (int i = 0; i < testCount; ++i)
-        {
-            auto value = to_string(i);
-            auto getResult = m_rediClient->StringGet(value);
-            if (getResult.empty() == false)
-            {
-                Log(format("StringSetTTL TTL Fail. Not Empty. Key: {}", i));
-            }
-        }
+	for (int i = 0; i < testCount; ++i)
+	{
+		auto value = to_string(i);
+		auto getResult = m_rediClient->StringGet(value);
+		if (getResult.empty() == false)
+		{
+			Log(format("StringSetTTL TTL Fail. Not Empty. Key: {}", i));
+		}
+	}
 
-        stopWatch.Stop();
-        Log(format("SenarioStringTTL End. ThreadId: {} Count: {} Elapse = {}ms", std::hash<std::thread::id>()(std::this_thread::get_id()), testCount, stopWatch.ElapseMillisecond()));
-    });
-
-    sernario.join();
+	stopWatch.Stop();
+	Log(format("SenarioStringTTL End. Count: {} Elapse = {}ms", testCount, stopWatch.ElapseMillisecond()));
 }
 
 shared_ptr<thread> RedisTestSenario::SenarioStringSetThreadLoop()

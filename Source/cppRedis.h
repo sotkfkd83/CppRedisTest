@@ -21,7 +21,7 @@ public:
 	bool StringDel(const string_view& key);
 
 	// sortedSet
-	long long SortedSetAdd(const string_view& key, const string_view& member, const double value);
+	double SortedSetAdd(const string_view& key, const string_view& member, const double value);
 	pair<long long, double> SortedSetGetRankAndScore(const string_view& key, const string_view& member, bool orderbydescending = true);
 	long long SortedSetDel(const string_view& key, const string_view& member);
 	void SortedSetGetScoreRange(const string_view& key, const double min, const double max, std::vector<std::pair<std::string, double>>& result);

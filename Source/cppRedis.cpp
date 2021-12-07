@@ -109,7 +109,7 @@ bool cppRedis::StringDel(const string_view& key)
 	return false;
 }
 
-long long cppRedis::SortedSetAdd(const string_view& key, const string_view& member, const double value)
+double cppRedis::SortedSetAdd(const string_view& key, const string_view& member, const double value)
 {
 	try
 	{
