@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "RedisTestSenario.h"
 #include "xStopWatch.h"
 #include "RandomInt.h"
@@ -6,6 +6,13 @@
 
 RedisTestSenario::RedisTestSenario()
 {
+    //TODO
+    /*
+    해당 초기화는 생성 후 초기화 입니다.
+    초기화와 생성후 초기화는 전혀 다른 개념입니다
+    헤더에서 m_runThreadLoopTest{} 로 처리 하거나
+    RedisTestSenario():m_runThreadLoopTest{} 등으로 하는것이 좋습니다.
+    */
     m_runThreadLoopTest = false;
 }
 
@@ -40,9 +47,19 @@ void RedisTestSenario::Stop()
 
 void RedisTestSenario::StopThreadLoop()
 {
+    //TODO
+    /*
+     * size는 음수가 나올수 없는 리턴 타입을 갖고 있어서.
+     * 0 비교는 좋지 않습니다.
+     * empty 체크를 쓰시거나 if(x.size()) 쪽이 오히려 권장 됩니다
+     */
+
     if (m_threadVector.size() > 0)
     {
-        for (int i = 0; i < m_threadVector.size(); ++i)
+        //TODO
+        //현대 C++ 은 ranged for를 권장하고 있습니다.
+        //가능하다면 ranged for를 사용 하시는것을 권합니다
+		for (int i = 0; i < m_threadVector.size(); ++i)
         {
             m_threadVector[i]->join();
         }
@@ -53,6 +70,8 @@ void RedisTestSenario::StopThreadLoop()
 
 int RedisTestSenario::GetThreadTestCount()
 {
+    //TODO
+	//현대 C++ 은 ranged for를 권장하고 있습니다.
     return m_threadVector.size();
 }
 
@@ -169,6 +188,9 @@ shared_ptr<thread> RedisTestSenario::SenarioStringSetThreadLoop()
     {
         Log(format("SenarioStringSetThreadLoop Start. ThreadId: {}", std::hash<std::thread::id>()(std::this_thread::get_id())));
 
+        //TODO
+        //생성자가 명시된 클래스는
+        //생성자 explicit 처리를 하고. {} Initialize list 초기화는 사용하지 않는것을 권합니다.
         RandomInt rand{ 0, 10000 };
         while (m_runThreadLoopTest)
         {
